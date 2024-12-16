@@ -27,7 +27,7 @@ namespace TestWebAppCore.Controllers
 
             config.Issuer = "sandbox.local";
             config.SingleSignOnDestination = new Uri("https://localhost:44306/Auth/Login");
-            config.SigningCertificate = CertificateUtil.Load(Startup.AppEnvironment.MapToPhysicalFilePath("sandboxkey.pfx"), "1234");
+            config.SigningCertificate = CertificateUtil.Load(Startup.AppEnvironment.MapToPhysicalFilePath("./certificates/sandboxkey.pfx"), "1234");
             config.SignatureAlgorithm = Saml2SecurityAlgorithms.RsaSha256Signature;
 
             var appliesToAddress = "https://localhost:44306";
