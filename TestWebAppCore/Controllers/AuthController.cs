@@ -28,7 +28,7 @@ namespace TestWebAppCore.Controllers
         public IActionResult Login(string returnUrl = null)
         {
 
-            var binding = new Saml2RedirectBinding();
+            var binding = new Saml2PostBinding();
             binding.SetRelayStateQuery(new Dictionary<string, string> { { relayStateReturnUrl, returnUrl ?? Url.Content("~/") } });
 
             return binding.Bind(new Saml2AuthnRequest(config)
@@ -38,8 +38,8 @@ namespace TestWebAppCore.Controllers
                 //AssertionConsumerServiceUrl = new Uri("https://test.com"),
 
                 //ForceAuthn = true,
-                Subject = new Subject { NameID = new NameID { ID = "aandrade" } },
-                NameIdPolicy = new NameIdPolicy { AllowCreate = true, Format = "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress" },
+                //Subject = new Subject { NameID = new NameID { ID = "aandrade" } },
+                NameIdPolicy = new NameIdPolicy { AllowCreate = true, Format = "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified" },
                 //Extensions = new AppExtensions(),
                 RequestedAuthnContext = new RequestedAuthnContext
                 {
@@ -53,12 +53,9 @@ namespace TestWebAppCore.Controllers
                         IDPEntry = [new IDPEntry 
                         {
                             ProviderID = "https://localhost:8443/realms/sandbox",
-                            //Name = "xxx",
-                            //Loc = "https://wsx.org"
-                        }], 
-                        //GetComplete = "xxx" 
+                            Name = "Keycloak",
+                        }],
                     }, 
-                    //RequesterID = ["https://xyz.org"] 
                 }
             }).ToActionResult();
         }
