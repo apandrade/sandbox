@@ -78,12 +78,11 @@ namespace TestWebApp.Controllers
             return new Saml2Metadata(entityDescriptor).CreateMetadata().ToActionResult();
         }
 
-        private IEnumerable<RequestedAttribute> CreateRequestedAttributes()
+        private IEnumerable<RequestedAttribute> CreateRequestedAttributes(string attrNameFormat= "urn:oasis:names:tc:SAML:2.0:attrname-format:uri")
         {
-            yield return new RequestedAttribute("urn:oid:2.5.4.4");
-            yield return new RequestedAttribute("urn:oid:2.5.4.3", false);
-            yield return new RequestedAttribute("urn:xxx", "test-value");
-            yield return new RequestedAttribute("urn:yyy", "123") { AttributeValueType = "xs:integer" };
+            yield return new RequestedAttribute("urn:oid:1.2.840.113549.1.9.1", true , attrNameFormat, "email");
+            yield return new RequestedAttribute("urn:oid:2.5.4.42", true, attrNameFormat, "givenName");
+            yield return new RequestedAttribute("urn:oid:2.5.4.4", true,attrNameFormat, "surname");            
         }
     }
 }

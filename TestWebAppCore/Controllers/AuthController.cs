@@ -40,7 +40,7 @@ namespace TestWebAppCore.Controllers
                 //ForceAuthn = true,
                 //Subject = new Subject { NameID = new NameID { ID = "aandrade" } },
                 NameIdPolicy = new NameIdPolicy { AllowCreate = true, Format = "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified" },
-                //Extensions = new AppExtensions(),
+                Extensions = new AppExtensions(),
                 RequestedAuthnContext = new RequestedAuthnContext
                 {
                     Comparison = AuthnContextComparisonTypes.Minimum,

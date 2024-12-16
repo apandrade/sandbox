@@ -20,13 +20,12 @@ namespace TestWebAppCore.Identity
         {
             yield return new XAttribute(samlNamespaceNameX, samlNamespace.OriginalString);
 
-            yield return new XElement(samlNamespaceX + "SPType", "public");
+            yield return new XElement(samlNamespaceX + "Sandbox", "public");
 
             yield return new XElement(samlNamespaceX + "RequestedAttributes",
-                GetRequestedAttribute("urn:oid:0.9.2342.19200300.100.1.1", isRequired: true, friendlyName: "Username"), // username
-                GetRequestedAttribute("urn:oid:0.9.2342.19200300.100.1.3", isRequired: true, friendlyName: "Email"),    // email
-                GetRequestedAttribute("urn:oid:2.5.4.42", isRequired: true, friendlyName: "First Name"),               // givenName
-                GetRequestedAttribute("urn:oid:2.5.4.4", isRequired: true, friendlyName: "Last Name")                 // sn (Surname)
+                GetRequestedAttribute("urn:oid:1.2.840.113549.1.9.1", isRequired: true, friendlyName: "email"),
+                GetRequestedAttribute("urn:oid:2.5.4.42", isRequired: true, friendlyName: "givenName"),
+                GetRequestedAttribute("urn:oid:2.5.4.4", isRequired: true, friendlyName: "surname")
             );
         }
 
